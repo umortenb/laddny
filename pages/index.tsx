@@ -1,3 +1,5 @@
+import { gql, useQuery } from '@apollo/client';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 const Title = styled.h1`
@@ -5,9 +7,33 @@ const Title = styled.h1`
 `;
 
 const HomePage = () => {
-  return ( 
-    <Title>Test</Title>
-   );
+  return (
+    <Test />
+  );
 }
- 
+
 export default HomePage;
+
+const Test = () => {
+  const { loading, error, data } = useQuery(gql`
+    query {
+      user {
+        name
+      }
+    }
+  `);
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+
+  return (
+    loading ? (
+      <div>loading...</div>
+    ) : error ? (
+      <div>error :(</div>
+    ) : (
+      <Title>{data.user.name}</Title>
+    )
+  )
+}
