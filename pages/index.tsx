@@ -1,39 +1,25 @@
-import { gql, useQuery } from '@apollo/client';
-import { useEffect } from 'react';
-import styled from 'styled-components';
-
-const Title = styled.h1`
-  color: red;
-`;
+import { useContext, useState } from 'react';
+import { AuthContext } from '../components/auth/AuthContextProvider';
 
 const HomePage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const auth = useContext(AuthContext);
+
   return (
-    <Test />
+    <>
+      <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}/>
+      <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <button onClick={() => auth.loginUser(email, password)}>Login</button>
+      <button onClick={() => auth.logoutUser()}>Logout</button>
+      {auth.user ? (
+        <div>
+          {JSON.stringify(auth.user)}
+        </div>
+      ) : null}
+    </>
   );
 }
 
 export default HomePage;
-
-const Test = () => {
-  const { loading, error, data } = useQuery(gql`
-    query {
-      user {
-        name
-      }
-    }
-  `);
-
-  useEffect(() => {
-    console.log(data)
-  }, [data])
-
-  return (
-    loading ? (
-      <div>loading...</div>
-    ) : error ? (
-      <div>error :(</div>
-    ) : (
-      <Title>{data.user.name}</Title>
-    )
-  )
-}
