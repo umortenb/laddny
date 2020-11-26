@@ -1,3 +1,4 @@
 export const mainTheme = {
-  backgroundColor: "#dfdfdf"
+  backgroundColor: "#dfdfdf",
+  headerBackgroundColor: "#ccab8d"
 }
