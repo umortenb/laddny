@@ -4,7 +4,6 @@ import { ModalOverlay } from './ModalOverlay'
 
 export interface ModalProps {
   closeModal: () => void;
-  
 }
  
 const Modal: React.FC<ModalProps> = ({ children, closeModal }) => {

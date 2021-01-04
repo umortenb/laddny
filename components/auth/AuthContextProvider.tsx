@@ -1,29 +1,25 @@
 import { createContext, useEffect, useState } from "react";
-import { getUserCustomData, loginEmailPassword, logOutUser } from "../../lib/realm";
+import { refreshUserCustomData } from "../../lib/realm";
 
-export const AuthContext = createContext({user: null, loginUser: null, logoutUser: null})
+export const AuthContext = createContext({user: null, refreshUser: null})
 
 export const AuthContextProvider = ({children}) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    initUser();
+    // get initial user
+    refreshUser();
   }, [])
 
-  const initUser = () => {
-    setUser(getUserCustomData());
-  }
-
-  const loginUser = (email, password) => {
-    loginEmailPassword(email, password).then(userData => setUser(userData));
-  }
-
-  const logoutUser = () => {
-    logOutUser().then(() => setUser(null));
+  const refreshUser = async (userData = null): Promise<void> => {
+    if (!userData) {
+      userData = await refreshUserCustomData();
+    }
+    setUser(userData);
   }
 
   return (
-    <AuthContext.Provider value={{user, loginUser, logoutUser}}>
+    <AuthContext.Provider value={{user, refreshUser}}>
       {children}
     </AuthContext.Provider>
   )
