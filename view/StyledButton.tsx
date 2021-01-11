@@ -10,10 +10,10 @@ export const StyledButton = styled.button`
   justify-content: center;
 
   cursor: pointer;
-  
+
   &:hover,
   &:focus {
     outline: none;
-    border-color: ${props => props.theme.accentColor};
+    border-color: ${(props) => props.theme.accentColor};
   }
 `;

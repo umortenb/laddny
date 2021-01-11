@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { AuthFormContainer } from './AuthFormContainer';
-import { FlexContainer } from './FlexContainer';
+import styled from "styled-components";
+import { AuthFormContainer } from "./AuthFormContainer";
+import { FlexContainer } from "./FlexContainer";
 
 export const ConfirmUserContainer = styled(FlexContainer)`
   flex-direction: column;

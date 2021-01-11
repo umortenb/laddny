@@ -8,13 +8,16 @@ const app: Realm.App = RealmWeb.getApp(appID);
 
 export async function loginEmailPassword(email: string, password: string) {
   // Create a credential
-  const credentials: Realm.Credentials = RealmWeb.Credentials.emailPassword(email, password);
+  const credentials: Realm.Credentials = RealmWeb.Credentials.emailPassword(
+    email,
+    password
+  );
   try {
     // Authenticate the user
     const user: Realm.User = await app.logIn(credentials);
 
     return user.customData;
-  } catch(err) {
+  } catch (err) {
     console.error("Failed to log in", err);
   }
 }
@@ -29,15 +32,15 @@ export async function loginAnonymous() {
   try {
     // Authenticate the user
     const user = await app.logIn(credentials);
-    
+
     return user.customData;
-  } catch(err) {
+  } catch (err) {
     console.error("Failed to log in", err);
   }
 }
 
 export async function refreshUserCustomData() {
-  console.log(app.currentUser)
+  console.log(app.currentUser);
   return await app.currentUser?.refreshCustomData();
 }
 
@@ -66,4 +69,3 @@ export async function confirmUser(token: string, tokenId: string) {
 export async function resendConfirmationEmail(email: string) {
   await app.emailPasswordAuth.resendConfirmationEmail(email);
 }
-

@@ -1,21 +1,21 @@
-import { useRouter } from 'next/router'
-import { NavLink } from '../view/NavLink';
+import { useRouter } from "next/router";
+import { NavLink } from "../view/NavLink";
 
-export interface PageLinkProps {
-  
-}
+export interface PageLinkProps {}
 
 const PageLink: React.FC<PageLinkProps> = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   const isActiveRoute = (href: string): boolean => {
     console.log(router.pathname);
     return router.pathname === href;
-  }
+  };
 
-  return ( 
-    <NavLink href="/" active={isActiveRoute("/")}>Home</NavLink>
-   );
-}
- 
+  return (
+    <NavLink href="/" active={isActiveRoute("/")}>
+      Home
+    </NavLink>
+  );
+};
+
 export default PageLink;

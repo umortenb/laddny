@@ -8,6 +8,6 @@ export const StyledInput = styled.input`
 
   &:focus {
     outline: none;
-    border-color: ${props => props.theme.accentColor};
+    border-color: ${(props) => props.theme.accentColor};
   }
 `;

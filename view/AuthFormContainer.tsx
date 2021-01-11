@@ -1,8 +1,8 @@
-import { removeClientSetsFromDocument } from '@apollo/client/utilities';
-import styled from 'styled-components';
-import { FlexContainer } from './FlexContainer';
+import { removeClientSetsFromDocument } from "@apollo/client/utilities";
+import styled from "styled-components";
+import { FlexContainer } from "./FlexContainer";
 
-export const AuthFormContainer = styled(FlexContainer).attrs(props => ({
+export const AuthFormContainer = styled(FlexContainer).attrs((props) => ({
   direction: "column",
 }))`
   width: 100%;

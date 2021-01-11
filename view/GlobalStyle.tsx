@@ -1,9 +1,9 @@
-import { createGlobalStyle } from 'styled-components'
-import { headerHeight } from './Header'
+import { createGlobalStyle } from "styled-components";
+import { headerHeight } from "./Header";
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    background-color: ${props => props.theme.backgroundColor};
+    background-color: ${(props) => props.theme.backgroundColor};
   }
 
   * {
@@ -13,4 +13,4 @@ export const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
-`
+`;

@@ -1,5 +1,5 @@
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
-import { getValidAccessToken, graphql_url } from './realm';
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { getValidAccessToken, graphql_url } from "./realm";
 
 export const getApolloClient = new ApolloClient({
   link: new HttpLink({
@@ -10,6 +10,5 @@ export const getApolloClient = new ApolloClient({
       return fetch(uri, options);
     },
   }),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
-
