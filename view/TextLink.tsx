@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 export const TextLink = styled.a`
-  color: #7c5100;
+  color: ${(props) => props.theme.primaryColor[700]};
   cursor: pointer;
 `;

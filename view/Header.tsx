@@ -8,5 +8,7 @@ export const Header = styled.div`
   left: 0;
   right: 0;
   height: ${headerHeight};
+  padding-left: 16px;
+  padding-right: 16px;
   background-color: ${(props) => props.theme.headerBackgroundColor};
 `;

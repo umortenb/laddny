@@ -1,5 +1,9 @@
+import { accentColor, neutralColor, primaryColor } from "./colorPalettes";
+
 export const mainTheme = {
-  backgroundColor: "#dfdfdf",
-  headerBackgroundColor: "#ccab8d",
-  accentColor: "#ccab8d",
+  primaryColor: primaryColor,
+  neutralColor: neutralColor,
+  accentColor: accentColor,
+  backgroundColor: primaryColor[900],
+  headerBackgroundColor: neutralColor[100],
 };

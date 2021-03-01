@@ -14,6 +14,6 @@ export const StyledButton = styled.button`
   &:hover,
   &:focus {
     outline: none;
-    border-color: ${(props) => props.theme.accentColor};
+    border-color: ${(props) => props.theme.accentColor[700]};
   }
 `;
