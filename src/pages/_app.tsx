@@ -7,17 +7,20 @@ import { mainTheme } from "../view/mainTheme";
 import { GlobalStyle } from "../view/GlobalStyle";
 import HeaderMenu from "../components/HeaderMenu";
 import { PageContainer } from "../view/PageContainer";
+import I18nProviderWrapper from "../components/I18nProviderWrapper";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthContextProvider>
       <ApolloProvider client={getApolloClient}>
         <ThemeProvider theme={mainTheme}>
-          <HeaderMenu />
-          <GlobalStyle />
-          <PageContainer>
-            <Component {...pageProps} />
-          </PageContainer>
+          <I18nProviderWrapper messages={pageProps.messages}>
+            <HeaderMenu />
+            <GlobalStyle />
+            <PageContainer>
+              <Component {...pageProps} />
+            </PageContainer>
+          </I18nProviderWrapper>
         </ThemeProvider>
       </ApolloProvider>
     </AuthContextProvider>
