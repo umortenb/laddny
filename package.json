@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@apollo/client": "^3.2.5",
+    "@lingui/react": "^3.7.0",
     "graphql": "^15.4.0",
     "next": "^10.0.0",
     "react": "^17.0.1",
@@ -12,12 +13,26 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "extract": "lingui extract",
+    "compile": "lingui compile"
   },
   "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@lingui/cli": "^3.7.0",
+    "@lingui/macro": "^3.7.0",
     "@types/node": "^14.14.6",
     "@types/react": "^16.9.55",
+    "babel-plugin-macros": "^3.0.1",
     "babel-plugin-styled-components": "^1.11.1",
+    "husky": "^4.3.7",
+    "prettier": "2.2.1",
+    "pretty-quick": "^3.1.0",
     "typescript": "^4.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }
