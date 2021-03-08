@@ -2,9 +2,8 @@ import { FormEvent, useState } from "react";
 import { resendConfirmationEmail } from "../../lib/realm";
 import { AuthFormContainer } from "../../view/AuthFormContainer";
 import { ErrorMessage } from "../../view/ErrorMessage";
-import { FlexContainer } from "../../view/FlexContainer";
+import FormTextInput from "../../view/FormTextInput";
 import { StyledButton } from "../../view/StyledButton";
-import { StyledInput } from "../../view/StyledInput";
 
 export interface ResendConfirmationFormProps {}
 
@@ -37,7 +36,8 @@ const ResendConfirmationForm: React.FC<ResendConfirmationFormProps> = () => {
         as="form"
         onSubmit={(e) => submitResendConfirmationEmailForm(e)}
       >
-        <StyledInput
+        <FormTextInput
+          label="Mail"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}

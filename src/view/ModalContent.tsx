@@ -5,7 +5,7 @@ const shadow = "3px 3px 5px 0px rgba(0, 0, 0, 0.4)";
 export const ModalContent = styled.div`
   background-color: white;
   border-radius: 4px;
-  padding: 16px;
+  padding: 48px;
   z-index: 1001;
 
   // center horizontally and vertically

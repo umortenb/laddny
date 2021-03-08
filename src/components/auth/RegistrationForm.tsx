@@ -3,8 +3,8 @@ import { registerUser } from "../../lib/realm";
 import { ErrorMessage } from "../../view/ErrorMessage";
 import { AuthFormContainer } from "../../view/AuthFormContainer";
 import { Heading } from "../../view/Heading";
-import { StyledInput } from "../../view/StyledInput";
 import { StyledButton } from "../../view/StyledButton";
+import FormTextInput from "../../view/FormTextInput";
 
 export interface RegistrationFormProps {}
 
@@ -49,12 +49,14 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
     return (
       <AuthFormContainer as="form" onSubmit={(e) => submitRegistrationForm(e)}>
         <Heading>Register</Heading>
-        <StyledInput
+        <FormTextInput
+          label="Mail"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <StyledInput
+        <FormTextInput
+          label="Password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
