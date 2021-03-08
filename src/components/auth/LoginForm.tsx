@@ -3,8 +3,8 @@ import { loginEmailPassword } from "../../lib/realm";
 import { Heading } from "../../view/Heading";
 import { AuthFormContainer } from "../../view/AuthFormContainer";
 import { StyledButton } from "../../view/StyledButton";
-import { StyledInput } from "../../view/StyledInput";
 import { AuthContext } from "./AuthContextProvider";
+import FormTextInput from "../../view/FormTextInput";
 
 export interface LoginFormProps {}
 
@@ -27,12 +27,14 @@ const LoginForm: React.FC<LoginFormProps> = () => {
   return (
     <AuthFormContainer as="form" onSubmit={(e) => submitLoginForm(e)}>
       <Heading>Login</Heading>
-      <StyledInput
+      <FormTextInput
+        label="Mail"
         type="text"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <StyledInput
+      <FormTextInput
+        label="Password"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}

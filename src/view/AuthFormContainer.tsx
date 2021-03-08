@@ -8,15 +8,15 @@ export const AuthFormContainer = styled(FlexContainer).attrs((props) => ({
   width: 100%;
 
   h3 {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
   }
 
   input {
-    margin-bottom: 8px;
+    margin-bottom: 16px;
   }
 
   button {
-    margin-bottom: 8px;
-    margin-top: 8px;
+    margin-bottom: 16px;
+    margin-top: 16px;
   }
 `;
