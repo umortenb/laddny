@@ -1,10 +1,26 @@
 import { Trans } from "@lingui/react";
 import Link from "next/link";
 import { getIntl } from "../lib/i18n";
+import { Block } from "../models/block";
+import BlockComponent from "../view/Block";
 
+const testBlock: Block = {
+  _id: "test",
+  rows: [
+    {
+      blocks: [{ _id: "test1", content: "test1" }],
+    },
+    {
+      blocks: [
+        { _id: "test2", content: "test2" },
+        { _id: "test3", content: "test3" },
+      ],
+    },
+  ],
+};
 const HomePage = () => {
   return (
-    <div>
+    <>
       <Trans id="Test" />
       <Link href="/" locale="en-US">
         EN
@@ -12,7 +28,8 @@ const HomePage = () => {
       <Link href="/" locale="de-DE">
         DE
       </Link>
-    </div>
+      <BlockComponent block={testBlock} />
+    </>
   );
 };
 
