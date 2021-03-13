@@ -1,22 +1,27 @@
 import { Trans } from "@lingui/react";
 import Link from "next/link";
+import BlockComponent from "../components/BlockComponent";
 import { getIntl } from "../lib/i18n";
 import { Block } from "../models/block";
-import BlockComponent from "../view/Block";
 
 const testBlock: Block = {
   _id: "test",
-  rows: [
-    {
-      blocks: [{ _id: "test1", content: "test1" }],
-    },
-    {
-      blocks: [
-        { _id: "test2", content: "test2" },
-        { _id: "test3", content: "test3" },
-      ],
-    },
-  ],
+  subBlockInfo: {
+    direction: "column",
+    blocks: [
+      { _id: "test1", content: "test1" },
+      {
+        _id: "subBlock",
+        subBlockInfo: {
+          direction: "row",
+          blocks: [
+            { _id: "test2", content: "test2" },
+            { _id: "test3", content: "test3" },
+          ],
+        },
+      },
+    ],
+  },
 };
 const HomePage = () => {
   return (

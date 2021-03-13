@@ -1,10 +1,11 @@
 export interface Block {
   _id: string;
-  rows?: BlockRow[];
+  subBlockInfo?: SubBlockInfo;
   content?: Content;
 }
 
-export interface BlockRow {
+export interface SubBlockInfo {
+  direction: "row" | "column";
   blocks: Block[];
 }
 
