@@ -1,6 +1,7 @@
 import { Trans } from "@lingui/react";
 import Link from "next/link";
 import BlockComponent from "../components/BlockComponent";
+import TextContentComponent from "../components/TextContentComponent";
 import { getIntl } from "../lib/i18n";
 import { Block } from "../models/block";
 
@@ -26,6 +27,7 @@ const testBlock: Block = {
 const HomePage = () => {
   return (
     <>
+      <TextContentComponent content={"test"} />
       <Trans id="Test" />
       <Link href="/" locale="en-US">
         EN

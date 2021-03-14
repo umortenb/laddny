@@ -1,5 +1,6 @@
 import TextContentComponent from "../components/TextContentComponent";
 import { Block } from "../models/block";
+import { BlockView } from "../view/Block";
 import { BlockContainer } from "../view/BlockContainer";
 
 export interface BlockProps {
@@ -8,15 +9,17 @@ export interface BlockProps {
 
 const BlockComponent: React.FC<BlockProps> = ({ block }) => {
   return (
-    <BlockContainer direction={block.subBlockInfo?.direction}>
+    <BlockView>
       {block.content ? (
         <TextContentComponent content={block.content} />
       ) : (
-        block.subBlockInfo?.blocks.map((block) => (
-          <BlockComponent block={block} />
-        ))
+        <BlockContainer direction={block.subBlockInfo?.direction}>
+          {block.subBlockInfo?.blocks.map((block) => (
+            <BlockComponent block={block} />
+          ))}
+        </BlockContainer>
       )}
-    </BlockContainer>
+    </BlockView>
   );
 };
 

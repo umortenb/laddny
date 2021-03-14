@@ -2,6 +2,7 @@
   "dependencies": {
     "@apollo/client": "^3.2.5",
     "@lingui/react": "^3.7.0",
+    "draft-js": "^0.11.7",
     "graphql": "^15.4.0",
     "next": "^10.0.0",
     "react": "^17.0.1",
