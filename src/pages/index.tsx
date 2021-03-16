@@ -3,6 +3,7 @@ import BlockComponent from "../components/BlockComponent";
 import TextContentComponent from "../components/TextContentComponent";
 import { getIntl } from "../lib/i18n";
 import { Block } from "../models/block";
+import { Paper } from "../view/Paper";
 
 const testBlock: Block = {
   _id: "test",
@@ -28,7 +29,9 @@ const HomePage = () => {
     <>
       <TextContentComponent content={"test"} />
       <Trans id="Test" />
-      <BlockComponent block={testBlock} />
+      <Paper>
+        <BlockComponent block={testBlock} />
+      </Paper>
     </>
   );
 };
