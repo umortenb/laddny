@@ -2,6 +2,7 @@
   "dependencies": {
     "@apollo/client": "^3.2.5",
     "@lingui/react": "^3.7.0",
+    "cross-env": "^7.0.3",
     "draft-js": "^0.11.7",
     "graphql": "^15.4.0",
     "next": "^10.0.0",
@@ -12,7 +13,7 @@
     "styled-components": "^5.2.1"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "extract": "lingui extract",

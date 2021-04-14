@@ -1,36 +1,31 @@
 import { Trans } from "@lingui/react";
 import BlockComponent from "../components/BlockComponent";
-import TextContentComponent from "../components/TextContentComponent";
+import BlockContainerComponent from "../components/BlockContainerComponent";
 import { getIntl } from "../lib/i18n";
-import { Block } from "../models/block";
+import { Block, ContentType } from "../models/block";
 import { Paper } from "../view/Paper";
 
-const testBlock: Block = {
-  _id: "test",
-  subBlockInfo: {
-    direction: "column",
-    blocks: [
-      { _id: "test1", content: "test1" },
-      {
-        _id: "subBlock",
-        subBlockInfo: {
-          direction: "row",
-          blocks: [
-            { _id: "test2", content: "test2" },
-            { _id: "test3", content: "test3" },
-          ],
-        },
+const newBlock: Block = {
+  type: ContentType.Container,
+  content: [
+    {
+      block: {
+        type: ContentType.Text,
       },
-    ],
-  },
+    },
+    {
+      block: {
+        type: ContentType.Text,
+      },
+    },
+  ],
 };
 const HomePage = () => {
   return (
     <>
-      <TextContentComponent content={"test"} />
       <Trans id="Test" />
       <Paper>
-        <BlockComponent block={testBlock} />
+        <BlockContainerComponent block={newBlock} />
       </Paper>
     </>
   );

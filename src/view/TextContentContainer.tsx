@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const TextContentContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  position: relative;
+  z-index: auto;
 
   .public-DraftEditor-content {
-    padding: 16px;
+    padding: 8px;
   }
 `;

@@ -1,24 +1,25 @@
+import { useState } from "react";
 import TextContentComponent from "../components/TextContentComponent";
-import { Block } from "../models/block";
+import { Block, ContentType } from "../models/block";
 import { BlockView } from "../view/Block";
-import { BlockContainer } from "../view/BlockContainer";
+import BlockControls from "./BlockControls";
 
 export interface BlockProps {
   block: Block;
 }
 
 const BlockComponent: React.FC<BlockProps> = ({ block }) => {
+  const [active, setActive] = useState<boolean>(false);
   return (
-    <BlockView>
-      {block.content ? (
+    <BlockView
+      type={block.type}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+    >
+      {active ? <BlockControls /> : null}
+      {block.type === ContentType.Text ? (
         <TextContentComponent content={block.content} />
-      ) : (
-        <BlockContainer direction={block.subBlockInfo?.direction}>
-          {block.subBlockInfo?.blocks.map((block) => (
-            <BlockComponent block={block} />
-          ))}
-        </BlockContainer>
-      )}
+      ) : null}
     </BlockView>
   );
 };
