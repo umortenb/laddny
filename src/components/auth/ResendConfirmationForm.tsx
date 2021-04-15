@@ -1,9 +1,9 @@
 import { FormEvent, useState } from "react";
 import { resendConfirmationEmail } from "../../lib/realm";
-import { AuthFormContainer } from "../../view/AuthFormContainer";
-import { ErrorMessage } from "../../view/ErrorMessage";
-import FormTextInput from "../../view/FormTextInput";
-import { StyledButton } from "../../view/StyledButton";
+import { Button } from "../generic/buttons/Button";
+import { ErrorMessage } from "../generic/alerts/ErrorMessage";
+import FormTextInput from "../generic/inputs/FormTextInput";
+import { AuthForm } from "./AuthForm";
 
 export interface ResendConfirmationFormProps {}
 
@@ -32,7 +32,7 @@ const ResendConfirmationForm: React.FC<ResendConfirmationFormProps> = () => {
     return <div>Confirmation E-Mail resent!</div>;
   } else {
     return (
-      <AuthFormContainer
+      <AuthForm
         as="form"
         onSubmit={(e) => submitResendConfirmationEmailForm(e)}
       >
@@ -42,11 +42,11 @@ const ResendConfirmationForm: React.FC<ResendConfirmationFormProps> = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <StyledButton type="submit">Resend confirmation mail</StyledButton>
+        <Button type="submit">Resend confirmation mail</Button>
         {status === "UserNotFound" ? (
           <ErrorMessage>User not found.</ErrorMessage>
         ) : null}
-      </AuthFormContainer>
+      </AuthForm>
     );
   }
 };

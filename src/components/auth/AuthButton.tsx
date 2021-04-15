@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { logOutUser } from "../../lib/realm";
-import { NavLink } from "../../view/NavLink";
+import { NavLink } from "../generic/links/NavLink";
 import { AuthContext } from "./AuthContextProvider";
 import AuthModal from "./AuthModal";
 

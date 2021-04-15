@@ -5,6 +5,7 @@ export const NavLink = styled.a`
   cursor: pointer;
   font-weight: 600;
   transition: opacity 0.2s;
+  margin: 8px;
 
   &:hover,
   &:focus {

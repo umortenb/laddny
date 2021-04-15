@@ -1,18 +1,30 @@
 import { Trans } from "@lingui/react";
-import Link from "next/link";
+import BlockContainer from "../components/blocks/BlockContainer";
 import { getIntl } from "../lib/i18n";
+import { Block, ContentType } from "../models/block";
+
+const newBlock: Block = {
+  type: ContentType.Container,
+  content: [
+    {
+      block: {
+        type: ContentType.Text,
+      },
+    },
+    {
+      block: {
+        type: ContentType.Text,
+      },
+    },
+  ],
+};
 
 const HomePage = () => {
   return (
-    <div>
+    <>
       <Trans id="Test" />
-      <Link href="/" locale="en-US">
-        EN
-      </Link>
-      <Link href="/" locale="de-DE">
-        DE
-      </Link>
-    </div>
+      <BlockContainer block={newBlock} />
+    </>
   );
 };
 

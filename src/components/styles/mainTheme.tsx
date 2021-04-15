@@ -4,6 +4,6 @@ export const mainTheme = {
   primaryColor: primaryColor,
   neutralColor: neutralColor,
   accentColor: accentColor,
-  backgroundColor: neutralColor[100],
-  headerBackgroundColor: neutralColor[100],
+  backgroundColor: neutralColor[200],
+  headerBackgroundColor: neutralColor[200],
 };
