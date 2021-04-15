@@ -1,9 +1,7 @@
 import { Trans } from "@lingui/react";
-import BlockComponent from "../components/BlockComponent";
-import BlockContainerComponent from "../components/BlockContainerComponent";
+import BlockContainer from "../components/blocks/BlockContainer";
 import { getIntl } from "../lib/i18n";
 import { Block, ContentType } from "../models/block";
-import { Paper } from "../view/Paper";
 
 const newBlock: Block = {
   type: ContentType.Container,
@@ -20,13 +18,12 @@ const newBlock: Block = {
     },
   ],
 };
+
 const HomePage = () => {
   return (
     <>
       <Trans id="Test" />
-      <Paper>
-        <BlockContainerComponent block={newBlock} />
-      </Paper>
+      <BlockContainer block={newBlock} />
     </>
   );
 };

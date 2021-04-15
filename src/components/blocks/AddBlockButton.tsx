@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const buttonRadius = 16;
 
-export const AddBlockButtonView = styled.button`
+export const Style = styled.button`
   position: relative;
   width: ${2 * buttonRadius}px;
   height: ${2 * buttonRadius}px;
@@ -45,10 +45,10 @@ const HorizontalLine = styled(Line)`
 
 const AddBlockButton: React.FC<HTMLProps<HTMLButtonElement>> = (props) => {
   return (
-    <AddBlockButtonView {...props}>
+    <Style {...props}>
       <VerticalLine />
       <HorizontalLine />
-    </AddBlockButtonView>
+    </Style>
   );
 };
 

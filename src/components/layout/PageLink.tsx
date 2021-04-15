@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { NavLink } from "../view/NavLink";
+import { NavLink } from "../generic/links/NavLink";
 
 export interface PageLinkProps {}
 

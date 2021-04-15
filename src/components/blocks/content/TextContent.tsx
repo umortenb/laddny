@@ -6,23 +6,30 @@ import {
   RawDraftContentState,
 } from "draft-js";
 import "draft-js/dist/Draft.css";
-import { TextContentContainer } from "../view/TextContentContainer";
+import styled from "styled-components";
 
-export interface TextContentComponentProps {
+export interface TextContentProps {
   content?: RawDraftContentState;
 }
 
-const TextContentComponent: React.FC<TextContentComponentProps> = ({
-  content,
-}) => {
+const Style = styled.div`
+  position: relative;
+  z-index: auto;
+
+  .public-DraftEditor-content {
+    padding: 8px;
+  }
+`;
+
+const TextContent: React.FC<TextContentProps> = ({ content }) => {
   const [editorState, setEditorState] = useState(
     content ? convertFromRaw(content) : () => EditorState.createEmpty()
   );
   return (
-    <TextContentContainer>
+    <Style>
       <Editor editorState={editorState} onChange={setEditorState} />
-    </TextContentContainer>
+    </Style>
   );
 };
 
-export default TextContentComponent;
+export default TextContent;

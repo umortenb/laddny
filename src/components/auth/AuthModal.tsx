@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import { FlexContainer } from "../../view/FlexContainer";
-import Modal from "../../view/Modal";
+import { Flex } from "../generic/containers/Flex";
+import Modal from "../generic/modal/Modal";
+import { TextLink } from "../generic/links/TextLink";
 import { AuthContext } from "./AuthContextProvider";
 import LoginForm from "./LoginForm";
 import RegistrationForm from "./RegistrationForm";
-import { TextLink } from "../../view/TextLink";
 
 export interface AuthModalProps {
   closeModal: () => void;
@@ -45,9 +45,9 @@ const AuthModal: React.FC<AuthModalProps> = ({ closeModal }) => {
   };
   return (
     <Modal closeModal={() => closeModal()}>
-      <FlexContainer direction="column">
+      <Flex direction="column">
         {!user ? authForms() : <div>Logged in successfully!</div>}
-      </FlexContainer>
+      </Flex>
     </Modal>
   );
 };

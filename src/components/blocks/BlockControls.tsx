@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { FlexContainer } from "../view/FlexContainer";
+import { Flex } from "../generic/containers/Flex";
 
 const controlHeight = 32;
 
 export interface BlockControlsProps {}
 
-const Wrapper = styled(FlexContainer)`
+const Style = styled(Flex)`
   position: absolute;
   top: ${-controlHeight}px;
   right: 0;
@@ -19,7 +19,7 @@ const Wrapper = styled(FlexContainer)`
 `;
 
 const BlockControls: React.FC<BlockControlsProps> = () => {
-  return <Wrapper></Wrapper>;
+  return <Style></Style>;
 };
 
 export default BlockControls;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledButton = styled.button`
+export const Button = styled.button`
   padding: 7px;
   border: 1px solid transparent;
   border-radius: 5px;

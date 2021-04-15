@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { registerUser } from "../../lib/realm";
-import { ErrorMessage } from "../../view/ErrorMessage";
-import { AuthFormContainer } from "../../view/AuthFormContainer";
-import { Heading } from "../../view/Heading";
-import { StyledButton } from "../../view/StyledButton";
-import FormTextInput from "../../view/FormTextInput";
+import { Button } from "../generic/buttons/Button";
+import { ErrorMessage } from "../generic/alerts/ErrorMessage";
+import FormTextInput from "../generic/inputs/FormTextInput";
+import { Heading } from "../generic/headings/Heading";
+import { AuthForm } from "./AuthForm";
 
 export interface RegistrationFormProps {}
 
@@ -47,7 +47,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
 
   if (!loading) {
     return (
-      <AuthFormContainer as="form" onSubmit={(e) => submitRegistrationForm(e)}>
+      <AuthForm as="form" onSubmit={(e) => submitRegistrationForm(e)}>
         <Heading>Register</Heading>
         <FormTextInput
           label="Mail"
@@ -61,9 +61,9 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <StyledButton>Register</StyledButton>
+        <Button>Register</Button>
         {errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage> : null}
-      </AuthFormContainer>
+      </AuthForm>
     );
   } else {
     return <div>loading</div>;

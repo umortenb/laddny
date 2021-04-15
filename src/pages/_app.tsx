@@ -3,11 +3,11 @@ import { getApolloClient } from "../lib/apolloClient";
 import { ApolloProvider } from "@apollo/client";
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import { ThemeProvider } from "styled-components";
-import { mainTheme } from "../view/mainTheme";
-import { GlobalStyle } from "../view/GlobalStyle";
-import HeaderMenu from "../components/HeaderMenu";
-import { PageContainer } from "../view/PageContainer";
-import I18nProviderWrapper from "../components/I18nProviderWrapper";
+import HeaderMenu from "../components/layout/HeaderMenu";
+import I18nProviderWrapper from "../components/i18n/I18nProviderWrapper";
+import { mainTheme } from "../components/styles/mainTheme";
+import { GlobalStyle } from "../components/styles/GlobalStyle";
+import { PageContainer } from "../components/layout/PageContainer";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
