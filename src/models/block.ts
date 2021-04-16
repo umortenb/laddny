@@ -1,4 +1,3 @@
-import { TextContentComponentProps } from "../components/blocks/content/TextContent";
 import { RawDraftContentState } from "draft-js";
 
 export interface BlockData {
