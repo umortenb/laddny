@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { confirmUser } from "../../lib/realm";
 import ResendConfirmationForm from "./ResendConfirmationForm";
+import useTranslation from "next-translate/useTranslation";
 
 export interface ConfirmUserProps {}
 
@@ -20,6 +21,7 @@ const Style = styled(Flex)`
 `;
 
 const ConfirmUser: React.FC<ConfirmUserProps> = () => {
+  const { t } = useTranslation("common");
   const {
     query: { token, tokenId },
   } = useRouter();
@@ -51,10 +53,10 @@ const ConfirmUser: React.FC<ConfirmUserProps> = () => {
   return (
     <Style>
       {confirmationStatus === "success" ? (
-        <div>Registration successful</div>
+        <div>{t("confirm-user:RegistrationSuccess")}</div>
       ) : confirmationStatus === "expiredOrInvalid" ? (
         <>
-          <div>Your confirmation URL is expired or invalid.</div>
+          <div>{t("confirm-user:URLExpiredOrInvalid")}</div>
           <ResendConfirmationForm />
         </>
       ) : (

@@ -5,12 +5,16 @@ import { TextLink } from "../generic/links/TextLink";
 import { AuthContext } from "./AuthContextProvider";
 import LoginForm from "./LoginForm";
 import RegistrationForm from "./RegistrationForm";
+import useTranslation from "next-translate/useTranslation";
+import Trans from "next-translate/Trans";
 
 export interface AuthModalProps {
   closeModal: () => void;
 }
 
 const AuthModal: React.FC<AuthModalProps> = ({ closeModal }) => {
+  const { t } = useTranslation("common");
+
   const [showRegistration, setShowRegistration] = useState(false);
   const { user } = useContext(AuthContext);
 
@@ -20,11 +24,12 @@ const AuthModal: React.FC<AuthModalProps> = ({ closeModal }) => {
         <>
           <LoginForm />
           <div>
-            No Account yet?{" "}
-            <TextLink onClick={() => setShowRegistration(true)}>
-              Register
-            </TextLink>
-            .
+            <Trans
+              i18nKey="common:AskRegister"
+              components={[
+                <TextLink onClick={() => setShowRegistration(true)} />,
+              ]}
+            />
           </div>
         </>
       );
@@ -33,11 +38,12 @@ const AuthModal: React.FC<AuthModalProps> = ({ closeModal }) => {
         <>
           <RegistrationForm />
           <div>
-            Have Account already?{" "}
-            <TextLink onClick={() => setShowRegistration(false)}>
-              Login
-            </TextLink>
-            .
+            <Trans
+              i18nKey="common:AskLogin"
+              components={[
+                <TextLink onClick={() => setShowRegistration(false)} />,
+              ]}
+            />
           </div>
         </>
       );
@@ -46,7 +52,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ closeModal }) => {
   return (
     <Modal closeModal={() => closeModal()}>
       <Flex direction="column">
-        {!user ? authForms() : <div>Logged in successfully!</div>}
+        {!user ? authForms() : <div>{t("LoginSuccess")}</div>}
       </Flex>
     </Modal>
   );

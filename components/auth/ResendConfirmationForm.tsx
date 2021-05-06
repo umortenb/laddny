@@ -4,10 +4,14 @@ import { Button } from "../generic/buttons/Button";
 import { ErrorMessage } from "../generic/alerts/ErrorMessage";
 import FormTextInput from "../generic/inputs/FormTextInput";
 import { AuthForm } from "./AuthForm";
+import { t, Trans } from "@lingui/macro";
+import useTranslation from "next-translate/useTranslation";
 
 export interface ResendConfirmationFormProps {}
 
 const ResendConfirmationForm: React.FC<ResendConfirmationFormProps> = () => {
+  const { t } = useTranslation("common");
+
   const [email, setEmail] = useState("");
 
   const [loading, setLoading] = useState(false);
@@ -29,7 +33,7 @@ const ResendConfirmationForm: React.FC<ResendConfirmationFormProps> = () => {
   };
 
   if (status === "emailSent") {
-    return <div>Confirmation E-Mail resent!</div>;
+    return <div>{t("confirm-user:ConfirmationMailResent")}</div>;
   } else {
     return (
       <AuthForm
@@ -37,14 +41,16 @@ const ResendConfirmationForm: React.FC<ResendConfirmationFormProps> = () => {
         onSubmit={(e) => submitResendConfirmationEmailForm(e)}
       >
         <FormTextInput
-          label="Mail"
+          label={t("Mail")}
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <Button type="submit">Resend confirmation mail</Button>
+        <Button type="submit">
+          {t("confirm-user:ResendConfirmationMail")}
+        </Button>
         {status === "UserNotFound" ? (
-          <ErrorMessage>User not found.</ErrorMessage>
+          <ErrorMessage>{t("confirm-user:UserNotFound")}</ErrorMessage>
         ) : null}
       </AuthForm>
     );

@@ -29,10 +29,10 @@ const HeaderMenu: React.FC<HeaderMenuProps> = () => {
     <Style>
       <PageLink />
       <Flex alignItems="center" justifyContent="flex-end">
-        <Link href="/" locale="en-US">
+        <Link href="/" locale="en">
           <NavLink>EN</NavLink>
         </Link>
-        <Link href="/" locale="de-DE">
+        <Link href="/" locale="de">
           <NavLink>DE</NavLink>
         </Link>
         <AuthButton></AuthButton>

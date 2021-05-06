@@ -1,0 +1,7 @@
+{
+  "RegistrationSuccess": "Registration successful",
+  "URLExpiredOrInvalid": "Your confirmation URL is expired or invalid.",
+  "ConfirmationMailResent": "Confirmation E-Mail resent!",
+  "Resend confirmation mail": "Resend confirmation mail",
+  "UserNotFound": "User not found."
+}

@@ -1,0 +1,7 @@
+{
+  "RegistrationSuccess": "Registrierung erfolgreich",
+  "URLExpiredOrInvalid": "Ihr Bestätigungslink ist abgelaufen oder ungültig.",
+  "ConfirmationMailResent": "Bestätitungsmail gesendet!",
+  "ResendConfirmationMail": "Bestätigungsmail erneut schicken",
+  "UserNotFound": "Benutzername nicht gefunden."
+}

@@ -1,6 +1,4 @@
-import { Trans } from "@lingui/react";
 import BlockContainer from "../components/blocks/BlockContainer";
-import { getIntl } from "../lib/i18n";
 import { Block, ContentType } from "../models/block";
 
 const newBlock: Block = {
@@ -20,22 +18,7 @@ const newBlock: Block = {
 };
 
 const HomePage = () => {
-  return (
-    <>
-      <Trans id="Test" />
-      <BlockContainer block={newBlock} />
-    </>
-  );
+  return <BlockContainer block={newBlock} />;
 };
 
 export default HomePage;
-
-export async function getStaticProps(context) {
-  const messages = await getIntl(context.locale);
-
-  return {
-    props: {
-      messages,
-    },
-  };
-}

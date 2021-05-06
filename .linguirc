@@ -1,8 +1,0 @@
-{
-   "locales": ["en-US", "de-DE"],
-   "catalogs": [{
-      "path": "src/locales/{locale}/messages",
-      "include": ["src"]
-   }],
-   "format": "po"
-}

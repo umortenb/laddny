@@ -1,0 +1,14 @@
+{
+  "Mail": "E-Mail",
+  "MailInUse": "E-Mail Adresse wird bereits benutzt.",
+  "PasswordMaxCharacters": "Passwort kann maximal {{count}} Zeichen haben.",
+  "PasswordMinCharacters": "Passwort benötigt mindestens {{count}} Zeichen.",
+  "Register": "Registrieren",
+  "Password": "Passwort",
+  "Login": "Login",
+  "AskRegister": "Noch kein Account? <0>Jetzt registrieren</0>.",
+  "AskLogin": "Sie haben schon einen Account? <0>Jetzt einloggen</0>.",
+  "LoginSuccess": "Login erfolgreich!",
+  "Logout": "Ausloggen",
+  "Account": "Account"
+}

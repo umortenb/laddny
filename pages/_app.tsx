@@ -4,7 +4,6 @@ import { ApolloProvider } from "@apollo/client";
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import { ThemeProvider } from "styled-components";
 import HeaderMenu from "../components/layout/HeaderMenu";
-import I18nProviderWrapper from "../components/i18n/I18nProviderWrapper";
 import { mainTheme } from "../components/styles/mainTheme";
 import { GlobalStyle } from "../components/styles/GlobalStyle";
 import { PageContainer } from "../components/layout/PageContainer";
@@ -14,13 +13,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     <AuthContextProvider>
       <ApolloProvider client={getApolloClient}>
         <ThemeProvider theme={mainTheme}>
-          <I18nProviderWrapper messages={pageProps.messages}>
-            <HeaderMenu />
-            <GlobalStyle />
-            <PageContainer>
-              <Component {...pageProps} />
-            </PageContainer>
-          </I18nProviderWrapper>
+          <HeaderMenu />
+          <GlobalStyle />
+          <PageContainer>
+            <Component {...pageProps} />
+          </PageContainer>
         </ThemeProvider>
       </ApolloProvider>
     </AuthContextProvider>

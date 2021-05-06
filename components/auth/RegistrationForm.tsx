@@ -5,10 +5,14 @@ import { ErrorMessage } from "../generic/alerts/ErrorMessage";
 import FormTextInput from "../generic/inputs/FormTextInput";
 import { Heading } from "../generic/headings/Heading";
 import { AuthForm } from "./AuthForm";
+import { t, Trans } from "@lingui/macro";
+import useTranslation from "next-translate/useTranslation";
 
 export interface RegistrationFormProps {}
 
 const RegistrationForm: React.FC<RegistrationFormProps> = () => {
+  const { t } = useTranslation("common");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmationPassword, setConfirmationPassword] = useState("");
@@ -21,9 +25,9 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
   const submitRegistrationForm = async (e): Promise<void> => {
     e.preventDefault();
     if (password.length > 128) {
-      setErrorMessage("Password can have at most 128 characters.");
+      setErrorMessage(t("PasswordMaxCharacters", { count: 128 }));
     } else if (password.length < 6) {
-      setErrorMessage("Password must have at least 6 characters.");
+      setErrorMessage(t("PasswordMinCharacters", { count: 6 }));
     } else {
       setLoading(true);
 
@@ -41,32 +45,32 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
 
   const handleRegistrationError = (errorCode: string): void => {
     if (errorCode === "AccountNameInUse") {
-      setErrorMessage("E-Mail adress already in use.");
+      setErrorMessage(t("MailInUse"));
     }
   };
 
   if (!loading) {
     return (
       <AuthForm as="form" onSubmit={(e) => submitRegistrationForm(e)}>
-        <Heading>Register</Heading>
+        <Heading>{t("Register")}</Heading>
         <FormTextInput
-          label="Mail"
+          label={t("Mail")}
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <FormTextInput
-          label="Password"
+          label={t("Password")}
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button>Register</Button>
+        <Button>{t("Register")}</Button>
         {errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage> : null}
       </AuthForm>
     );
   } else {
-    return <div>loading</div>;
+    return <div>loading...</div>;
   }
 };
 
