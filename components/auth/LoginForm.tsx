@@ -1,11 +1,11 @@
-import { FormEvent, useContext, useState } from "react";
-import { loginEmailPassword } from "../../lib/realm";
+import { FormEvent, useState } from "react";
 import FormTextInput from "../generic/inputs/FormTextInput";
 import { Heading } from "../generic/headings/Heading";
 import { Button } from "../generic/buttons/Button";
-import { AuthContext } from "./AuthContextProvider";
 import { AuthForm } from "./AuthForm";
 import useTranslation from "next-translate/useTranslation";
+import supabase from "../../lib/supabase/supabase";
+import { Message } from "../generic/alerts/Message";
 
 export interface LoginFormProps {}
 
@@ -15,15 +15,23 @@ const LoginForm: React.FC<LoginFormProps> = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { refreshUser } = useContext(AuthContext);
+  const [message, setMessage] = useState(null);
 
   const submitLoginForm = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
-    try {
-      const userData = await loginEmailPassword(email, password);
-      refreshUser(userData);
-    } catch (err) {
-      console.log(err);
+    const { error } = await supabase.auth.signIn({ email, password });
+    if (error) {
+      handleLoginError(error);
+    }
+  };
+
+  const handleLoginError = (error: Error): void => {
+    switch (error.message) {
+      case "Invalid email or password":
+        setMessage({ type: "error", msg: t("InvalidMailOrPassword") });
+        break;
+      default:
+        setMessage({ type: "error", msg: t("SomethingWentWrong") });
     }
   };
 
@@ -43,6 +51,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <Button type="submit">{t("Login")}</Button>
+      {message ? <Message type={message.type}>{message.msg}</Message> : null}
     </AuthForm>
   );
 };

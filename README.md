@@ -1,3 +1,3 @@
 # laddny
 
-Next.js, React, MongoDB
+Next.js, supabase, styled-components

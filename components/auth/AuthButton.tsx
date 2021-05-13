@@ -1,10 +1,9 @@
-import { Trans } from "@lingui/macro";
 import useTranslation from "next-translate/useTranslation";
-import { useContext, useState } from "react";
-import { logOutUser } from "../../lib/realm";
+import { useState } from "react";
+import supabase from "../../lib/supabase/supabase";
 import { NavLink } from "../generic/links/NavLink";
-import { AuthContext } from "./AuthContextProvider";
 import AuthModal from "./AuthModal";
+import { useAuth } from "./AuthProvider";
 
 export interface AuthBottonProps {}
 
@@ -12,19 +11,22 @@ const AuthBotton: React.FC<AuthBottonProps> = () => {
   const { t } = useTranslation("common");
 
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const { user, refreshUser } = useContext(AuthContext);
+  const { user } = useAuth();
 
   const authButtonClick = (): void => {
     if (user) {
-      logout();
+      signOut();
     } else {
       setShowAuthModal(true);
     }
   };
 
-  const logout = async (): Promise<void> => {
-    await logOutUser();
-    refreshUser();
+  const signOut = async () => {
+    try {
+      await supabase.auth.signOut();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

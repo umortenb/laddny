@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { registerUser } from "../../lib/realm";
 import { Button } from "../generic/buttons/Button";
-import { ErrorMessage } from "../generic/alerts/ErrorMessage";
 import FormTextInput from "../generic/inputs/FormTextInput";
 import { Heading } from "../generic/headings/Heading";
 import { AuthForm } from "./AuthForm";
-import { t, Trans } from "@lingui/macro";
 import useTranslation from "next-translate/useTranslation";
+import supabase from "../../lib/supabase/supabase";
+import { Message } from "../generic/alerts/Message";
 
 export interface RegistrationFormProps {}
 
@@ -15,37 +14,41 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmationPassword, setConfirmationPassword] = useState("");
 
-  const [errorMessage, setErrorMessage] = useState(null);
-
-  const [awaitConfirmation, setAwaitConfirmation] = useState(false);
+  const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const submitRegistrationForm = async (e): Promise<void> => {
     e.preventDefault();
-    if (password.length > 128) {
-      setErrorMessage(t("PasswordMaxCharacters", { count: 128 }));
-    } else if (password.length < 6) {
-      setErrorMessage(t("PasswordMinCharacters", { count: 6 }));
-    } else {
-      setLoading(true);
 
-      try {
-        await registerUser(email, password);
-        setAwaitConfirmation(true);
-      } catch (err) {
-        console.log({ ...err });
-        handleRegistrationError(err.errorCode);
-      }
-
-      setLoading(false);
+    if (password.length < 6) {
+      setMessage({
+        type: "error",
+        msg: t("PasswordMinCharacters", { count: 6 }),
+      });
+      return;
     }
+
+    setLoading(true);
+
+    const { user, error } = await supabase.auth.signUp({ email, password });
+
+    if (error) {
+      handleRegistrationError(error);
+    } else if (!user) {
+      setMessage({ type: "success", msg: t("ConfirmationMailSent") });
+    }
+
+    setLoading(false);
   };
 
-  const handleRegistrationError = (errorCode: string): void => {
-    if (errorCode === "AccountNameInUse") {
-      setErrorMessage(t("MailInUse"));
+  const handleRegistrationError = (error: Error): void => {
+    switch (error.message) {
+      case "A user with this email address has already been registered":
+        setMessage({ type: "error", msg: t("MailInUse") });
+        break;
+      default:
+        setMessage({ type: "error", msg: t("SomethingWentWrong") });
     }
   };
 
@@ -66,7 +69,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button>{t("Register")}</Button>
-        {errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage> : null}
+        {message ? <Message type={message.type}>{message.msg}</Message> : null}
       </AuthForm>
     );
   } else {
