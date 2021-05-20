@@ -4,9 +4,8 @@ export const Button = styled.button`
   padding: 7px;
   border: 1px solid transparent;
   border-radius: 5px;
-  background-color: ${(props) => props.theme.primaryColor[100]};
+  background-color: transparent;
   font-size: 1.125rem;
-  color: ${(props) => props.theme.primaryColor[900]};
   transition: all 0.2s;
 
   display: flex;
@@ -17,7 +16,7 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     outline: none;
-    background-color: ${(props) => props.theme.primaryColor[300]};
-    border-color: ${(props) => props.theme.primaryColor[400]};
+    color: ${(props) => props.theme.primaryColor[100]};
+    background-color: ${(props) => props.theme.primaryColor[700]};
   }
 `;
