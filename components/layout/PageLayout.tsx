@@ -6,7 +6,7 @@ export interface PageLayoutProps {
 }
 
 const Style = styled.div`
-  margin-top: ${(props) => (props.withHeader ? headerHeight : "0px")};
+  margin-top: ${(props) => (props.withHeader ? headerHeight + "px" : "0px")};
 `;
 
 const PageLayout: React.FC<PageLayoutProps> = (props) => {

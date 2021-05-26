@@ -7,7 +7,7 @@ import { NavLink } from "../generic/links/NavLink";
 
 export interface HeaderMenuProps {}
 
-export const headerHeight = "60px";
+export const headerHeight = 60;
 
 export const Style = styled(Flex).attrs((props) => ({
   alignItems: "center",
@@ -17,7 +17,7 @@ export const Style = styled(Flex).attrs((props) => ({
   top: 0;
   left: 0;
   right: 0;
-  height: ${headerHeight};
+  height: ${headerHeight}px;
   width: initial;
   padding-left: 16px;
   padding-right: 16px;
@@ -27,7 +27,7 @@ export const Style = styled(Flex).attrs((props) => ({
 const HeaderMenu: React.FC<HeaderMenuProps> = () => {
   return (
     <Style>
-      <PageLink />
+      <img src="/logo.png" height={headerHeight - 10} />
       <Flex alignItems="center" justifyContent="flex-end">
         <Link href="/" locale="en">
           <NavLink>EN</NavLink>
