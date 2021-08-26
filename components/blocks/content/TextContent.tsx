@@ -1,15 +1,10 @@
-import { useState } from "react";
-import {
-  Editor,
-  EditorState,
-  convertFromRaw,
-  RawDraftContentState,
-} from "draft-js";
-import "draft-js/dist/Draft.css";
+import { useMemo, useState } from "react";
+import { createEditor } from "slate";
+import { Editable, Slate, withReact } from "slate-react";
 import styled from "styled-components";
 
 export interface TextContentProps {
-  content?: RawDraftContentState;
+  content?: string;
 }
 
 const Style = styled.div`
@@ -22,14 +17,7 @@ const Style = styled.div`
 `;
 
 const TextContent: React.FC<TextContentProps> = ({ content }) => {
-  const [editorState, setEditorState] = useState(
-    content ? convertFromRaw(content) : () => EditorState.createEmpty()
-  );
-  return (
-    <Style>
-      <Editor editorState={editorState} onChange={setEditorState} />
-    </Style>
-  );
+  return <Editable />;
 };
 
 export default TextContent;
