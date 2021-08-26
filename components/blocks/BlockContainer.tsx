@@ -48,6 +48,8 @@ const BlockContainer: React.FC<BlockContainerProps> = (props) => {
       children: [{ text: "Heading" }],
     },
   ]);
+  const [changes, setChanges] = useState<Descendant[] | null>(null);
+  const [sendingChanges, setSendingChanges] = useState(false);
 
   // https://github.com/ianstormtaylor/slate/issues/4081
   const [editor] = useState(withReact(createEditor()));
@@ -61,8 +63,28 @@ const BlockContainer: React.FC<BlockContainerProps> = (props) => {
     }
   }, []);
 
+  useEffect(() => {
+    const updateDatabase = async () => {
+      if (!sendingChanges && changes) {
+        const newChanges = changes;
+        setChanges(null);
+        await upsertEditorElements(newChanges);
+        setSendingChanges(false);
+      }
+    };
+
+    updateDatabase();
+  }, [changes, sendingChanges]);
+
   const onEditorChange = (newValue: Descendant[]): void => {
     setValue(newValue);
+    setChanges(newValue);
+    // const changedElements = new Set();
+    // editor.operations.forEach((operation: Operation) => {
+    //   if (operation.type !== "set_selection") {
+    //     changedElements.add(Node.get(editor, operation.path));
+    //   }
+    // });
   };
 
   return (
